@@ -19,7 +19,7 @@ export default function Header() {
             />
           </Link>
         </section>
-        <section className="text-sm text-gray-300 font-thin">
+        <section className="text-sm font-thin text-gray-300">
           <ul className="flex gap-4">
             <li>
               <NavLink className={isActiveLink} to="/browse">
@@ -43,10 +43,7 @@ export default function Header() {
             </li>
           </ul>
         </section>
-        <section>
-         Search Icon
-          userInfo 
-        </section>
+        <section>Search Icon userInfo</section>
       </nav>
     </header>
   );
