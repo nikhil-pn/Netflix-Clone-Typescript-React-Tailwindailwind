@@ -1,10 +1,9 @@
 export default function App() {
   return (
-    <div className="bg-green-500 h-screen place-content-center grid">
-
-    <h1 className="text-6xl font-semibold justify-center text-white ">
-      Tailwind Is Working
-    </h1>
+    <div className="grid h-screen place-content-center bg-green-500">
+      <h1 className=" justify-center  text-6xl font-semibold text-white underline ">
+        Tailwind Is Working
+      </h1>
     </div>
-  )
+  );
 }
