@@ -16,7 +16,7 @@ export type MovieResult = {
   [k: string]: unknown;
 }[];
 
-export interface MovieResponse<T> {
+export type MovieResponse<T> = {
   page: number;
   results: T;
   total_pages: number;
