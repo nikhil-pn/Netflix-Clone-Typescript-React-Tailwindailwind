@@ -37,7 +37,7 @@ export default function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink className={isActiveLink} to="/browse/latest">
+              <NavLink className={isActiveLink} to="/latest">
                 New & Popular
               </NavLink>
             </li>

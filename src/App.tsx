@@ -21,10 +21,16 @@ function AppRouter() {
             </div>
           }
         ></Route>
+
         <Route path="/login" element={<h1>Login Page</h1>}></Route>
-        <Route path="/browse" element={<Layout></Layout>} >
-          <Route index element={<Browse/>}></Route>
-           </Route>
+
+        <Route path="/browse" element={<Layout></Layout>}>
+          <Route index element={<Browse />}></Route>
+        </Route>
+
+        <Route path="/latest" element={<Layout />}>
+          <Route index element={<h1>Latest</h1>}></Route>
+        </Route>
       </>
     )
   );
