@@ -4,6 +4,8 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import Layout from "./components/Layout";
+import Browse from "./pages/browse";
 
 function AppRouter() {
   const router = createBrowserRouter(
@@ -19,6 +21,10 @@ function AppRouter() {
             </div>
           }
         ></Route>
+        <Route path="/login" element={<h1>Login Page</h1>}></Route>
+        <Route path="/browse" element={<Layout></Layout>} >
+          <Route index element={<Browse/>}></Route>
+           </Route>
       </>
     )
   );
