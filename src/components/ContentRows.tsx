@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { MovieResult, MovieResponse, fetchRequest } from "../common/api";
 import { ENDPOINT } from "../common/endpoints";
+import CheveronLeft from "@heroicons/react/24/outline/ChevronLeftIcon"
+import CheveronRight from "@heroicons/react/24/outline/ChevronRightIcon"
 
 type RowProp = {
   endpoint: string;
@@ -9,7 +11,11 @@ type RowProp = {
 };
 const CARD_WIDTH = 200
 export default function Contentrows({ title, endpoint }: RowProp) {
+  const sliderRef = useRef<HTMLSelectElement>(null)
   const [rowData, setRowData] = useState<MovieResult[]>([]);
+  const [transalteX, setTransalteX] = useState(0)
+  const cardsPerPage = useRef(0)
+  const containerRef = useRef<HTMLSelectElement>(null)
   async function fetchRowData() {
     const response = await fetchRequest<MovieResponse<MovieResult[]>>(endpoint);
     setRowData(response.results);
@@ -25,12 +31,43 @@ export default function Contentrows({ title, endpoint }: RowProp) {
   }
 
 
-  function onNextClick(){
+  function onNextClick() {
+    console.log("reached here");
 
+    if (sliderRef.current) {
+      let updatedTranslateX = transalteX - getTransalteXvalue()
+      sliderRef.current.style.transform = `translateX(${updatedTranslateX}%)`
+
+      setTransalteX(updatedTranslateX)
+    }
   }
-  function onPrevClick(){
-    
+  function onPrevClick() {
+    if (sliderRef.current) {
+      let updatedTranslateX = transalteX + getTransalteXvalue()
+      sliderRef.current.style.transform = `translateX(${updatedTranslateX}%)`
+      setTransalteX(updatedTranslateX)
+
+    }
   }
+
+
+  function getTransalteXvalue() {
+    let translateXLocal = 0
+    if (sliderRef.current) {
+      translateXLocal = ((cardsPerPage.current * CARD_WIDTH) / sliderRef.current.clientWidth) * 100
+
+    }
+    return translateXLocal
+  }
+
+  useEffect(() => {
+    if (rowData?.length) {
+      if (containerRef.current) {
+        cardsPerPage.current = Math.floor(containerRef.current.clientWidth / CARD_WIDTH)
+      }
+    }
+
+  }, [rowData.length])
 
   useEffect(() => {
     fetchRowData();
@@ -43,11 +80,17 @@ export default function Contentrows({ title, endpoint }: RowProp) {
     <>
       <section>
         <h2 className="mb-4">{title}</h2>
-        <section className="">
-          <section className="gap-2 relative  flex flex-nowrap overflow-hidden ">
 
-            <button className=" absolute right-0 h-full z-[1] bg-black/25 ">Next</button>
-            <button className=" absolute h-full bg-black/25 z-[1] ">Prev</button>
+        <section ref={containerRef} className="gap-2 relative  flex flex-nowrap overflow-hidden ">
+
+          <button onClick={onNextClick} className=" absolute right-0 w-12 h-full z-[1] bg-black/25 ">
+            <CheveronRight className="text-white"></CheveronRight>
+          </button>
+          <button onClick={onPrevClick} className=" absolute h-full w-12 bg-black/25 z-[1] ">
+            <CheveronLeft></CheveronLeft>
+          </button>
+
+          <section ref={sliderRef} className=" flex gap-2 transition-transform  duration-700 ease-linear">
 
             {rowData?.map((item) => {
               const { id, title, poster_path } = item;
@@ -65,6 +108,7 @@ export default function Contentrows({ title, endpoint }: RowProp) {
             })}
           </section>
         </section>
+
       </section>
     </>
   );
