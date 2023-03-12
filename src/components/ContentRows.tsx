@@ -7,7 +7,7 @@ type RowProp = {
   endpoint: string;
   title: string;
 };
-
+const CARD_WIDTH = 200
 export default function Contentrows({ title, endpoint }: RowProp) {
   const [rowData, setRowData] = useState<MovieResult[]>([]);
   async function fetchRowData() {
@@ -16,32 +16,41 @@ export default function Contentrows({ title, endpoint }: RowProp) {
     console.log(response);
   }
 
+  function createImageUrl(path: string, width: number) {
+    const baseImageUrl = import.meta.env.VITE_BASE_IMAGE_URI;
+    const result = `${baseImageUrl}/w${width}${path}`
+    console.log(result, "result");
+    return result;
+
+  }
   useEffect(() => {
     fetchRowData();
   }, []);
 
   console.log(rowData, "rowdata");
 
-  const baseImageUrl = import.meta.env.VITE_BASE_IMAGE_URI;
 
   return (
     <>
       <section>
-        <h2 className="mb-2">{title}</h2>
-        <section className="  overflow-x-auto flex flex-nowrap ">
-          {rowData?.map((item) => {
-            const { id, title, poster_path } = item;
-            console.log(id, title, poster_path);
-            return (
-              <section key={id} className=" inline-block h-[200px] w-[200px] flex-none">
-                <img
-                  className="w-full h-full object-contain"
-                  src={baseImageUrl + poster_path}
-                  alt="g"
-                />
-              </section>
-            );
-          })}
+        <h2 className="mb-4">{title}</h2>
+        <section className="">
+          <section className="gap-2   flex flex-nowrap overflow-hidden ">
+            {rowData?.map((item) => {
+              const { id, title, poster_path } = item;
+              console.log(id, title, poster_path);
+              return (
+                <section key={id} className=" aspect-square rounded-md  h-[200px] w-[200px] flex-none overflow-hidden">
+                  <img
+                    loading="lazy"
+                    className="w-full h-full "
+                    src={createImageUrl(poster_path, CARD_WIDTH)}
+                    alt="g"
+                  />
+                </section>
+              );
+            })}
+          </section>
         </section>
       </section>
     </>

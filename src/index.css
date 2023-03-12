@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 /* adding custom styles to tailwind  */
-#root{
+body{
     background: theme("colors.dark");
     color: theme("colors.white");
-    min-height: theme("height.screen");
+    
 }
