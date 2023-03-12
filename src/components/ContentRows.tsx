@@ -23,6 +23,15 @@ export default function Contentrows({ title, endpoint }: RowProp) {
     return result;
 
   }
+
+
+  function onNextClick(){
+
+  }
+  function onPrevClick(){
+    
+  }
+
   useEffect(() => {
     fetchRowData();
   }, []);
@@ -35,7 +44,11 @@ export default function Contentrows({ title, endpoint }: RowProp) {
       <section>
         <h2 className="mb-4">{title}</h2>
         <section className="">
-          <section className="gap-2   flex flex-nowrap overflow-hidden ">
+          <section className="gap-2 relative  flex flex-nowrap overflow-hidden ">
+
+            <button className=" absolute right-0 h-full z-[1] bg-black/25 ">Next</button>
+            <button className=" absolute h-full bg-black/25 z-[1] ">Prev</button>
+
             {rowData?.map((item) => {
               const { id, title, poster_path } = item;
               console.log(id, title, poster_path);
