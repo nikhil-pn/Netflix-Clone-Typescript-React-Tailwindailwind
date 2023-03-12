@@ -20,6 +20,10 @@ export default function Contentrows({ title, endpoint }: RowProp) {
 
   const [currentPage, setCurrentPage] = useState(0)
 
+  const disablePrev = currentPage === 0
+  const disableNext = currentPage + 1 === pageCount
+
+
   async function fetchRowData() {
     const response = await fetchRequest<MovieResponse<MovieResult[]>>(endpoint);
     setRowData(response.results);
@@ -92,12 +96,19 @@ export default function Contentrows({ title, endpoint }: RowProp) {
         </ul>
         <section ref={containerRef} className="gap-2 relative  flex flex-nowrap overflow-hidden ">
 
-          <button onClick={onNextClick} className=" absolute right-0 w-12 h-full z-[1] bg-black/25 opacity-0 transition-opacity duration-300 ease-in">
-            <CheveronRight className="text-white"></CheveronRight>
-          </button>
-          <button onClick={onPrevClick} className=" absolute h-full w-12 bg-black/25 z-[1] opacity-0 transition-opacity duration-300 ease-in">
-            <CheveronLeft></CheveronLeft>
-          </button>
+          {!disableNext ? (
+            <button onClick={onNextClick} className=" absolute right-0 w-12 h-full z-[1] bg-black/25 opacity-0 transition-opacity duration-300 ease-in">
+              <CheveronRight className="text-white"></CheveronRight>
+            </button>
+          ) : null
+          }
+
+          {!disablePrev ? (
+            <button onClick={onPrevClick} className=" absolute h-full w-12 bg-black/25 z-[1] opacity-0 transition-opacity duration-300 ease-in">
+              <CheveronLeft></CheveronLeft>
+            </button>
+          ) : null
+          }
 
           <section ref={sliderRef} className=" flex gap-2 transition-transform  duration-700 ease-linear">
 
