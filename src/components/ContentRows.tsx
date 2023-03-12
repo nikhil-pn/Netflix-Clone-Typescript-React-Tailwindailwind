@@ -78,15 +78,15 @@ export default function Contentrows({ title, endpoint }: RowProp) {
 
   return (
     <>
-      <section>
+      <section className="row-container hover:cursor-pointer">
         <h2 className="mb-4">{title}</h2>
 
         <section ref={containerRef} className="gap-2 relative  flex flex-nowrap overflow-hidden ">
 
-          <button onClick={onNextClick} className=" absolute right-0 w-12 h-full z-[1] bg-black/25 ">
+          <button onClick={onNextClick} className=" absolute right-0 w-12 h-full z-[1] bg-black/25 opacity-0">
             <CheveronRight className="text-white"></CheveronRight>
           </button>
-          <button onClick={onPrevClick} className=" absolute h-full w-12 bg-black/25 z-[1] ">
+          <button onClick={onPrevClick} className=" absolute h-full w-12 bg-black/25 z-[1] opacity-0">
             <CheveronLeft></CheveronLeft>
           </button>
 
