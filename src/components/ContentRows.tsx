@@ -16,6 +16,10 @@ export default function Contentrows({ title, endpoint }: RowProp) {
   const [transalteX, setTransalteX] = useState(0)
   const cardsPerPage = useRef(0)
   const containerRef = useRef<HTMLSelectElement>(null)
+  const [pageCount, setpageCount] = useState(0)
+
+  const [currentPage, setCurrentPage] = useState(0)
+
   async function fetchRowData() {
     const response = await fetchRequest<MovieResponse<MovieResult[]>>(endpoint);
     setRowData(response.results);
@@ -39,6 +43,7 @@ export default function Contentrows({ title, endpoint }: RowProp) {
       sliderRef.current.style.transform = `translateX(${updatedTranslateX}%)`
 
       setTransalteX(updatedTranslateX)
+      setCurrentPage(currentPage + 1)
     }
   }
   function onPrevClick() {
@@ -46,6 +51,8 @@ export default function Contentrows({ title, endpoint }: RowProp) {
       let updatedTranslateX = transalteX + getTransalteXvalue()
       sliderRef.current.style.transform = `translateX(${updatedTranslateX}%)`
       setTransalteX(updatedTranslateX)
+      setCurrentPage(currentPage - 1)
+
 
     }
   }
@@ -55,7 +62,6 @@ export default function Contentrows({ title, endpoint }: RowProp) {
     let translateXLocal = 0
     if (sliderRef.current) {
       translateXLocal = ((cardsPerPage.current * CARD_WIDTH) / sliderRef.current.clientWidth) * 100
-
     }
     return translateXLocal
   }
@@ -65,6 +71,7 @@ export default function Contentrows({ title, endpoint }: RowProp) {
       if (containerRef.current) {
         cardsPerPage.current = Math.floor(containerRef.current.clientWidth / CARD_WIDTH)
       }
+      setpageCount(Math.ceil(rowData.length / cardsPerPage.current))
     }
 
   }, [rowData.length])
@@ -80,13 +87,15 @@ export default function Contentrows({ title, endpoint }: RowProp) {
     <>
       <section className="row-container hover:cursor-pointer">
         <h2 className="mb-4">{title}</h2>
-
+        <ul className="mb-4 flex justify-end gap-1 pr-4 items-center opacity-0 transition-opacity duration-300 ease-in">
+          {Array(pageCount).fill(0).map((page, index) => (<li className={`h-[2px] w-3 ${currentPage === index ? "bg-gray-100" : "bg-gray-600"}`} key={index}></li>))}
+        </ul>
         <section ref={containerRef} className="gap-2 relative  flex flex-nowrap overflow-hidden ">
 
-          <button onClick={onNextClick} className=" absolute right-0 w-12 h-full z-[1] bg-black/25 opacity-0">
+          <button onClick={onNextClick} className=" absolute right-0 w-12 h-full z-[1] bg-black/25 opacity-0 transition-opacity duration-300 ease-in">
             <CheveronRight className="text-white"></CheveronRight>
           </button>
-          <button onClick={onPrevClick} className=" absolute h-full w-12 bg-black/25 z-[1] opacity-0">
+          <button onClick={onPrevClick} className=" absolute h-full w-12 bg-black/25 z-[1] opacity-0 transition-opacity duration-300 ease-in">
             <CheveronLeft></CheveronLeft>
           </button>
 
