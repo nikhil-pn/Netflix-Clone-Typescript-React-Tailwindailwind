@@ -4,6 +4,7 @@ import { MovieResult, MovieResponse, fetchRequest } from "../common/api";
 import { ENDPOINT } from "../common/endpoints";
 import CheveronLeft from "@heroicons/react/24/outline/ChevronLeftIcon"
 import CheveronRight from "@heroicons/react/24/outline/ChevronRightIcon"
+import PageIndicator from "./PageIndicator";
 
 type RowProp = {
   endpoint: string;
@@ -91,9 +92,7 @@ export default function Contentrows({ title, endpoint }: RowProp) {
     <>
       <section className="row-container hover:cursor-pointer">
         <h2 className="mb-4">{title}</h2>
-        <ul className="mb-4 flex justify-end gap-1 pr-4 items-center opacity-0 transition-opacity duration-300 ease-in">
-          {Array(pageCount).fill(0).map((page, index) => (<li className={`h-[2px] w-3 ${currentPage === index ? "bg-gray-100" : "bg-gray-600"}`} key={index}></li>))}
-        </ul>
+        <PageIndicator pagesCount={pageCount} currentPage={currentPage}></PageIndicator>
         <section ref={containerRef} className="gap-2 relative  flex flex-nowrap overflow-hidden ">
 
           {!disableNext ? (
