@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react'
+import { useState, Fragment, useEffect, useRef, LegacyRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
 type ModalPops = {
@@ -10,7 +10,13 @@ type ModalPops = {
 }
 
 export default function Modal({ isOpen, onClose, title, children }:any) {
+  const panelRef = useRef<LegacyRef<HTMLDivElement>>(null)
+  // useEffect(()=>{
+  //   panelRef.current.add.
 
+
+
+  
 
   return (
     // Use the `Transition` component at the root level
@@ -39,7 +45,7 @@ export default function Modal({ isOpen, onClose, title, children }:any) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform bg-dark overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel  className="transform bg-dark overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-white"
