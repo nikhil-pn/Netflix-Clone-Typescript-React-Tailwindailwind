@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import Modal from './Modal'
 
 import { createImageUrl } from '../common/utilis'
+import YouTube from 'react-youtube'
 
 const CARD_WIDTH = 200
 
@@ -47,7 +48,7 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
 
       </section>
       <Modal isOpen={isOpen} onClose={onClose} key={id} title={title}>
-        <h1>This is the content</h1>
+        <YouTube videoId='EXeTwQWrcwY'></YouTube>
       </Modal>
     </>
   )
