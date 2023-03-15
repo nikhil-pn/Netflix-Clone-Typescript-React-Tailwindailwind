@@ -5,6 +5,8 @@ import { ENDPOINT } from "../common/endpoints";
 import CheveronLeft from "@heroicons/react/24/outline/ChevronLeftIcon"
 import CheveronRight from "@heroicons/react/24/outline/ChevronRightIcon"
 import PageIndicator from "./PageIndicator";
+import Modal from "./Modal";
+import MovieCard from "./MovieCard";
 
 type RowProp = {
   endpoint: string;
@@ -24,24 +26,15 @@ export default function Contentrows({ title, endpoint }: RowProp) {
   const disablePrev = currentPage === 0
   const disableNext = currentPage + 1 === pageCount
 
+  
 
   async function fetchRowData() {
     const response = await fetchRequest<MovieResponse<MovieResult[]>>(endpoint);
     setRowData(response.results);
-    console.log(response);
-  }
-
-  function createImageUrl(path: string, width: number) {
-    const baseImageUrl = import.meta.env.VITE_BASE_IMAGE_URI;
-    const result = `${baseImageUrl}/w${width}${path}`
-    console.log(result, "result");
-    return result;
-
   }
 
 
   function onNextClick() {
-    console.log("reached here");
 
     if (sliderRef.current) {
       let updatedTranslateX = transalteX - getTransalteXvalue()
@@ -85,14 +78,13 @@ export default function Contentrows({ title, endpoint }: RowProp) {
     fetchRowData();
   }, []);
 
-  console.log(rowData, "rowdata");
 
 
   return (
     <>
       <section className="row-container hover:cursor-pointer">
         <h2 className="mb-4">{title}</h2>
-        <PageIndicator pagesCount={pageCount} currentPage={currentPage}></PageIndicator>
+        <PageIndicator className="mb-4 opacity-0 transition-opacity duration-300 ease-in" pagesCount={pageCount} currentPage={currentPage}></PageIndicator>
         <section ref={containerRef} className="gap-2 relative  flex flex-nowrap overflow-hidden ">
 
           {!disableNext ? (
@@ -112,17 +104,9 @@ export default function Contentrows({ title, endpoint }: RowProp) {
           <section ref={sliderRef} className=" flex gap-2 transition-transform  duration-700 ease-linear">
 
             {rowData?.map((item) => {
-              const { id, title, poster_path } = item;
-              console.log(id, title, poster_path);
+              const { id, title, poster_path }: any = item;
               return (
-                <section key={id} className=" aspect-square rounded-md  h-[200px] w-[200px] flex-none overflow-hidden">
-                  <img
-                    loading="lazy"
-                    className="w-full h-full "
-                    src={createImageUrl(poster_path, CARD_WIDTH)}
-                    alt="g"
-                  />
-                </section>
+                <MovieCard key={item.id} {...item}></MovieCard>
               );
             })}
           </section>
