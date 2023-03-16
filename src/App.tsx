@@ -5,6 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Layout from "./components/Layout";
+import SigninBanner from "./components/SigninBanner";
 import Browse from "./pages/Browse";
 
 function AppRouter() {
@@ -14,11 +15,7 @@ function AppRouter() {
         <Route
           path="/"
           element={
-            <div className="grid h-screen place-content-center bg-green-500">
-              <h1 className=" justify-center  text-6xl font-semibold text-white underline ">
-                Tailwind Is Working
-              </h1>
-            </div>
+            <SigninBanner></SigninBanner>
           }
         ></Route>
 

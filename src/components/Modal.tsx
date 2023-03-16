@@ -6,20 +6,20 @@ type ModalPops = {
   onClose: (value: boolean) => void
   children: React.ReactElement
   title: string | React.ReactElement
+  closeModal: ()=> void
 
 }
 
-export default function Modal({ isOpen, onClose, title, children }:any) {
-  const panelRef = useRef<LegacyRef<HTMLDivElement>>(null)
-  // useEffect(()=>{
-  //   panelRef.current.add.
-
-
-
+export default function Modal({ isOpen, onClose, title, children, closeModal }: ModalPops) {
+  const panelRef = useRef<HTMLDivElement>(null)
   
+  async function onMouseLeave(event: any){
+    console.log("mouse leave happened");
+    closeModal()
+  }
 
+ 
   return (
-    // Use the `Transition` component at the root level
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
         <Transition.Child
@@ -44,8 +44,18 @@ export default function Modal({ isOpen, onClose, title, children }:any) {
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
+              afterEnter={() => {
+                console.log("after enter here");
+                // panelRef.current?.addEventListener("mouseleave", onMouseLeave)
+              }}
+
+              afterLeave={()=>{
+                console.log("after leave here");
+                panelRef.current?.addEventListener("mouseleave", onMouseLeave)
+              }}
+
             >
-              <Dialog.Panel  className="transform bg-dark overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="transform bg-dark overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-white"

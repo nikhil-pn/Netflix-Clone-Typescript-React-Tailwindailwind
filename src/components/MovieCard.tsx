@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, MouseEvent } from 'react'
 import Modal from './Modal'
 
 import { createImageUrl } from '../common/utilis'
 import YouTube from 'react-youtube'
 import { fetchRequest } from '../common/api'
 import { ENDPOINT } from '../common/endpoints'
+
 
 const CARD_WIDTH = 200
 
@@ -69,6 +70,12 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
     setIsOpen(value)
   }
 
+
+  function closeModal(){
+    setIsOpen(false)
+  }
+
+
   return (
     <>
       <section ref={movieCardRef} key={id} className=" aspect-square rounded-md  h-[200px] w-[200px] flex-none overflow-hidden">
@@ -80,7 +87,7 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
         />
 
       </section>
-      <Modal isOpen={isOpen} onClose={onClose} key={id} title={title}>
+      <Modal isOpen={isOpen} onClose={onClose} key={id} title={title} closeModal={closeModal}>
         <YouTube opts={{
           width: "450",
           playerVars: {
