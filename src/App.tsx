@@ -1,3 +1,5 @@
+import Footer from "./components/Footer";
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -15,7 +17,11 @@ function AppRouter() {
         <Route
           path="/"
           element={
+            <>
             <SigninBanner></SigninBanner>
+            <Footer></Footer>
+            </>
+            
           }
         ></Route>
 

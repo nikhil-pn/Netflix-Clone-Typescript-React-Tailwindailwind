@@ -65,7 +65,7 @@ function Footer({}: Props) {
           English
           <img
             className="w-3 m-2 pt-0.5"
-            src="/assets/down-filled-triangular-arrow.png"
+            src="/src/assets/down-filled-triangular-arrow.png"
             alt="drop-down"
           />
         </button>
