@@ -6,7 +6,10 @@ import YouTube from 'react-youtube'
 import { fetchRequest } from '../common/api'
 import { ENDPOINT } from '../common/endpoints'
 
-
+import PlayIcon from "@heroicons/react/24/solid/PlayCircleIcon"
+import LikeIcon from "@heroicons/react/24/outline/HandThumbUpIcon"
+import PlusIcon from "@heroicons/react/24/outline/PlusIcon"
+import ChevronDown from "@heroicons/react/24/outline/ChevronDownIcon"
 
 
 const CARD_WIDTH = 200
@@ -62,8 +65,8 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
 
 
   useEffect(() => {
-    movieCardRef.current?.addEventListener("mouseenter", onMouseEnter);
-    () => movieCardRef.current?.removeEventListener("mouseenter", onMouseEnter)
+    movieCardRef.current?.addEventListener("click", onMouseEnter);
+    () => movieCardRef.current?.removeEventListener("click", onMouseEnter)
   }, [])
 
   function onClose(value: boolean) {
@@ -103,9 +106,30 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
 
             },
           }} videoId={videoInfo?.key}></YouTube>
-          <section>
-            <ul>
-              <li></li>
+          <section className='flex items-center justify-between p-6 '>
+            <ul className='flex items-center justify-evenly gap-4'>
+              <li className='h-12 w-12' >
+                <button className='h-full w-full'>
+                  <PlayIcon></PlayIcon>
+                </button>
+              </li>
+              <li className='h-12 w-12' >
+                <button className='h-full w-full'>
+                  <PlusIcon></PlusIcon>
+                </button>
+              </li>
+              <li className='h-12 w-12' >
+                <button className='h-full w-full'>
+                  <LikeIcon></LikeIcon>
+                </button>
+              </li>
+            </ul>
+            <ul className='flex items-center justify-evenly gap-4'>
+              <li className='h-12 w-12' >
+                <button className='h-full w-full'>
+                  <ChevronDown></ChevronDown>
+                </button>
+              </li>
             </ul>
           </section>
         </section>

@@ -52,7 +52,7 @@ export default function Modal({ isOpen, onClose, title, children, closeModal }: 
               leaveTo="opacity-0 scale-95"
               afterEnter={() => {
                 console.log("after enter here");
-                // panelRef.current?.addEventListener("mouseleave", onMouseLeave)
+                panelRef.current?.addEventListener("mouseleave", onMouseLeave)
               }}
 
               afterLeave={()=>{
