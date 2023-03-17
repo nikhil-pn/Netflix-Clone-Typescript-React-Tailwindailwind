@@ -51,6 +51,7 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
   const movieCardRef = useRef<HTMLSelectElement>(null)
 
   const [position, setposition] = useState<Position | null>(null)
+  const [hidePoster, sethidePoster] = useState(false)
   async function fetchVideoInfo() {
     const response = await fetchRequest<MovieVideoResult<MovieVideoInfo[]>>(
       ENDPOINT.MOVIES_VIDEO.replace("{movie_id}", id.toString())
@@ -87,6 +88,20 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
     () => movieCardRef.current?.removeEventListener("click", onMouseEnter)
   }, [])
 
+
+  useEffect(() => {
+    if (videoInfo?.key) {
+      setTimeout(() => {
+        sethidePoster(true)
+      }, 800)
+    }
+    if (!isOpen) {
+      sethidePoster(false)
+    }
+
+  }, [videoInfo])
+
+
   function onClose(value: boolean) {
     console.log(value, "value");
     setIsOpen(value)
@@ -111,11 +126,15 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
       </section>
       <Modal isOpen={isOpen} onClose={onClose} key={`${id}-${Math.random()}`} title={""} closeModal={closeModal} position={position}>
 
-        <section>
+        <section className=' aspect-square transition-[height] duration-500 ease-in'>
+          <img src={createImageUrl(poster_path, 400)} alt={title} className={`w-full ${hidePoster? "invisible h-0": "visible h-full"}`} />
 
 
-          <YouTube opts={{
-            width: "450",
+
+          <YouTube 
+           className={`w-full ${!hidePoster? "invisible h-0": "visible h-full"}`} opts={{
+            width: "400",
+            height: "400",
             playerVars: {
               autoplay: 1,
               playsinline: 1,
