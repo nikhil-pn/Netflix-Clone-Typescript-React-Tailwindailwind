@@ -18,6 +18,12 @@ export default function Modal({ isOpen, onClose, title, children, closeModal }: 
     closeModal()
   }
 
+  function mouseEnter(event: any){
+    panelRef.current?.addEventListener("mouseenter", (e)=>{
+      console.log("mosuse enter func called");
+      
+    })
+  }
  
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -35,7 +41,7 @@ export default function Modal({ isOpen, onClose, title, children, closeModal }: 
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center">
+          <div className="flex min-h-full items-center justify-center text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -55,7 +61,7 @@ export default function Modal({ isOpen, onClose, title, children, closeModal }: 
               }}
 
             >
-              <Dialog.Panel className="transform bg-dark overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="transform bg-dark overflow-hidden rounded-2xl text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-white"
