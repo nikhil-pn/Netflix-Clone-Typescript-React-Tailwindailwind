@@ -8,7 +8,7 @@ export default function Header() {
   }
 
   return (
-    <header className="border-b-2 py-2">
+    <header className=" relative z-10 py-2">
       <nav className="grid grid-cols-[200px_auto_200px] items-center gap-4">
         <section className="h-12">
           <Link to="/browse">
