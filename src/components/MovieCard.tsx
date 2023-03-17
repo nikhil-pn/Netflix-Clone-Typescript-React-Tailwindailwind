@@ -65,8 +65,8 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
 
 
   useEffect(() => {
-    movieCardRef.current?.addEventListener("click", onMouseEnter);
-    () => movieCardRef.current?.removeEventListener("click", onMouseEnter)
+    movieCardRef.current?.addEventListener("mouseenter", onMouseEnter);
+    () => movieCardRef.current?.removeEventListener("mouseenter", onMouseEnter)
   }, [])
 
   function onClose(value: boolean) {
