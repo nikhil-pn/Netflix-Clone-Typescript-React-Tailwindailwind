@@ -1,50 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import netflix from "../assets/logo.png";
 
 export default function Header() {
+  const [fixed, setFixed] = useState(false)
   function isActiveLink({ isActive }: { isActive: boolean }) {
     return isActive ? "font-semibold text-white" : "undefined";
   }
 
+  function onWindowScroll() {
+    if (window.scrollY > 8) {
+      setFixed(true)
+    } else {
+      setFixed(false)
+    }
+  }
+  useEffect(() => {
+    window.addEventListener("scroll", onWindowScroll);
+
+    () => window.removeEventListener("scroll", onWindowScroll)
+  }, [])
+
   return (
-    <header className=" relative z-10 py-2">
-      <nav className="grid grid-cols-[200px_auto_200px] items-center gap-4">
-        <section className="h-12">
-          <Link to="/browse">
-            <img
-              className="h-full w-full object-contain"
-              src={netflix}
-              alt="netflix logo"
-            />
-          </Link>
-        </section>
-        <section className="text-sm font-thin text-gray-300">
-          <ul className="flex gap-4">
-            <li>
-              <NavLink className={isActiveLink} to="/browse">
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className={isActiveLink} to="/browse/genre">
-                Tv Show
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className={isActiveLink} to="/browse/genre/movies">
-                Movies
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className={isActiveLink} to="/latest">
-                New & Popular
-              </NavLink>
-            </li>
-          </ul>
-        </section>
-        <section>Search Icon userInfo</section>
-      </nav>
-    </header>
+    <header className={`z-10 py-2 ${fixed?"fixed top-0 bg-dark":"relative  bg-transparent"} transition-colors duration-300 ease-linear w-full `}>
+    <nav className="grid grid-cols-[200px_auto_200px] items-center gap-4">
+      <section className="h-12">
+        <Link to="/browse">
+          <img
+            className="h-full w-full object-contain"
+            src={netflix}
+            alt="netflix logo"
+          />
+        </Link>
+      </section>
+      <section className="text-sm font-thin text-gray-300">
+        <ul className="flex gap-4">
+          <li>
+            <NavLink className={isActiveLink} to="/browse">
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className={isActiveLink} to="/browse/genre">
+              Tv Show
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className={isActiveLink} to="/browse/genre/movies">
+              Movies
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className={isActiveLink} to="/latest">
+              New & Popular
+            </NavLink>
+          </li>
+        </ul>
+      </section>
+      <section>Search Icon userInfo</section>
+    </nav>
+    </header >
   );
 }

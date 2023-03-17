@@ -43,7 +43,7 @@ export default function Banner() {
 
     return (
         <section className=' relative aspect-video h-[800px] w-full'>
-            <img src={createImageUrlBanner(randomMovie?.backdrop_path ?? "", 0, "original")}></img>
+            {/* <img src={createImageUrlBanner(randomMovie?.backdrop_path ?? "", 0, "original")}></img> */}
 
             <YouTube videoId={videoInfo?.key} id="banner-video" opts={options}></YouTube>
 
