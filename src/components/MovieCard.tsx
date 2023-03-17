@@ -10,6 +10,7 @@ import PlayIcon from "@heroicons/react/24/solid/PlayCircleIcon"
 import LikeIcon from "@heroicons/react/24/outline/HandThumbUpIcon"
 import PlusIcon from "@heroicons/react/24/outline/PlusIcon"
 import ChevronDown from "@heroicons/react/24/outline/ChevronDownIcon"
+import { Position } from 'common/types'
 
 
 const CARD_WIDTH = 200
@@ -42,12 +43,14 @@ type MovieCardProp = {
 }
 
 
+
 export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
 
   const [isOpen, setIsOpen] = useState(false)
   const [videoInfo, setVideoInfo] = useState<MovieVideoInfo | null>(null)
   const movieCardRef = useRef<HTMLSelectElement>(null)
 
+  const [position, setposition] = useState<Position | null>(null)
   async function fetchVideoInfo() {
     const response = await fetchRequest<MovieVideoResult<MovieVideoInfo[]>>(
       ENDPOINT.MOVIES_VIDEO.replace("{movie_id}", id.toString())
@@ -57,6 +60,21 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
 
   async function onMouseEnter(event: any) {
 
+    let calculatePosition = movieCardRef.current?.getBoundingClientRect()
+    let top = (calculatePosition?.top ?? 0) - 100;
+    let left = (calculatePosition?.left ?? 0) - 100
+
+
+    if (left < 0) {
+      left = calculatePosition?.left as number
+    }
+    let totalWidth = left + 470;
+    if (totalWidth > document.body.clientWidth) {
+      left = left - (totalWidth - document.body.clientWidth)
+    }
+
+
+    setposition({ top, left })
     const [videoInfo] = await fetchVideoInfo()
     setVideoInfo(videoInfo)
     setIsOpen(true)
@@ -65,8 +83,8 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
 
 
   useEffect(() => {
-    movieCardRef.current?.addEventListener("mouseenter", onMouseEnter);
-    () => movieCardRef.current?.removeEventListener("mouseenter", onMouseEnter)
+    movieCardRef.current?.addEventListener("click", onMouseEnter);
+    () => movieCardRef.current?.removeEventListener("click", onMouseEnter)
   }, [])
 
   function onClose(value: boolean) {
@@ -91,7 +109,7 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
         />
 
       </section>
-      <Modal isOpen={isOpen} onClose={onClose} key={`${id}-${Math.random()}`} title={""} closeModal={closeModal}>
+      <Modal isOpen={isOpen} onClose={onClose} key={`${id}-${Math.random()}`} title={""} closeModal={closeModal} position={position}>
 
         <section>
 
@@ -108,12 +126,12 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
           }} videoId={videoInfo?.key}></YouTube>
           <section className='flex items-center justify-between p-6 '>
             <ul className='flex items-center justify-evenly gap-4'>
-              <li className='h-12 w-12' >
-                <button className='h-full w-full'>
+              <li className='h-12 w-12 ' >
+                <button className='h-full w-full '>
                   <PlayIcon></PlayIcon>
                 </button>
               </li>
-              <li className='h-12 w-12' >
+              <li className='h-12 w-12 ' >
                 <button className='h-full w-full'>
                   <PlusIcon></PlusIcon>
                 </button>
