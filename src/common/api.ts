@@ -1,3 +1,7 @@
+
+import { ENDPOINT } from "./endpoints";
+import { MovieVideoResult, MovieVideoInfo } from "components/MovieCard";
+
 export type MovieResult = {
   adult: boolean;
   backdrop_path: string;
@@ -30,4 +34,13 @@ export async function fetchRequest<T>(endpoint: string) {
 
   const response = await fetch(url);
   return response.json() as Promise<T>;
+}
+
+
+export async function fetchVideoInfo(id: string) {
+  
+  const response = await fetchRequest<MovieVideoResult<MovieVideoInfo[]>>(
+    ENDPOINT.MOVIES_VIDEO.replace("{movie_id}", id.toString())
+  )
+  return response.results.filter(result => result.site.toLocaleLowerCase() === "youtube")
 }

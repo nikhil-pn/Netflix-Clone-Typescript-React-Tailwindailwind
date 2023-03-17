@@ -3,7 +3,7 @@ import Modal from './Modal'
 
 import { createImageUrl } from '../common/utilis'
 import YouTube from 'react-youtube'
-import { fetchRequest } from '../common/api'
+import { fetchRequest, fetchVideoInfo } from '../common/api'
 import { ENDPOINT } from '../common/endpoints'
 
 import PlayIcon from "@heroicons/react/24/solid/PlayCircleIcon"
@@ -36,7 +36,7 @@ export type MovieVideoInfo = {
   [k: string]: unknown
 }
 
-type MovieCardProp = {
+export type MovieCardProp = {
   poster_path: string
   id: number
   title: string
@@ -52,12 +52,8 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
 
   const [position, setposition] = useState<Position | null>(null)
   const [hidePoster, sethidePoster] = useState(false)
-  async function fetchVideoInfo() {
-    const response = await fetchRequest<MovieVideoResult<MovieVideoInfo[]>>(
-      ENDPOINT.MOVIES_VIDEO.replace("{movie_id}", id.toString())
-    )
-    return response.results.filter(result => result.site.toLocaleLowerCase() === "youtube")
-  }
+ 
+
 
   async function onMouseEnter(event: any) {
 
@@ -76,7 +72,7 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
 
 
     setposition({ top, left })
-    const [videoInfo] = await fetchVideoInfo()
+    const [videoInfo] = await fetchVideoInfo(id.toString())
     setVideoInfo(videoInfo)
     setIsOpen(true)
 
