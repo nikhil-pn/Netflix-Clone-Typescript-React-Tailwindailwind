@@ -33,8 +33,8 @@ export default function Header() {
           />
         </Link>
       </section>
-      <section className="text-sm font-thin text-gray-300">
-        <ul className="flex gap-4">
+      <section className="text-sm font-normal text-gray-300">
+        <ul className="flex gap-8">
           <li>
             <NavLink className={isActiveLink} to="/browse">
               Home

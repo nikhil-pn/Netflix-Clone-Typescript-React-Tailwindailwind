@@ -6,7 +6,7 @@ import Contentrow from "../components/ContentRows";
 
 export default function Browse() {
   return (
-    <section className=" absolute top-0 ">
+    <section className=" top-0 ">
       <Banner/>
       <Contentrow endpoint={ENDPOINT.MOVIES_POPULAR} title="New & Popular"></Contentrow>
       <Contentrow endpoint={ENDPOINT.MOVIES_TOP_RATED} title="TOP rated"></Contentrow>
