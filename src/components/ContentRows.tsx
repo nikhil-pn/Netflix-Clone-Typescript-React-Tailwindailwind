@@ -82,10 +82,10 @@ export default function Contentrows({ title, endpoint }: RowProp) {
 
   return (
     <>
-      <section className="row-container hover:cursor-pointer">
-        <h2 className="mb-4">{title}</h2>
+      <section className="row-container hover:cursor-pointer ml-12">
+        <h2 className="mb-4 text-xl font-semi-bold">{title}</h2>
         <PageIndicator className="mb-4 opacity-0 transition-opacity duration-300 ease-in" pagesCount={pageCount} currentPage={currentPage}></PageIndicator>
-        <section ref={containerRef} className="gap-2 relative  flex flex-nowrap overflow-hidden ">
+        <section ref={containerRef} className="gap-2 relative  flex flex-nowrap overflow-hidden mb-8 ">
 
           {!disableNext ? (
             <button onClick={onNextClick} className=" absolute right-0 w-12 h-full z-[1] bg-black/25 opacity-0 transition-opacity duration-300 ease-in">

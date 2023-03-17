@@ -127,7 +127,7 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
       <Modal isOpen={isOpen} onClose={onClose} key={`${id}-${Math.random()}`} title={""} closeModal={closeModal} position={position}>
 
         <section className=' aspect-square transition-[height] duration-500 ease-in'>
-          <img src={createImageUrl(poster_path, 400)} alt={title} className={`w-full ${hidePoster? "invisible h-0": "visible h-full"}`} />
+          <img src={createImageUrl(poster_path, 400,)} alt={title} className={`w-full ${hidePoster? "invisible h-0": "visible h-full"}`} />
 
 
 
