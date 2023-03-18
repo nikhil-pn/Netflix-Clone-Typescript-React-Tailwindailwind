@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import netflix from "../assets/logo.png";
+import Notification from "@heroicons/react/24/outline/BellIcon"
+import SearchBar from "./SearchBar";
+import ProfileMenu from "./ProfileMenu";
 
 export default function Header() {
   const [fixed, setFixed] = useState(false)
@@ -22,9 +25,9 @@ export default function Header() {
   }, [])
 
   return (
-    <header className={`z-10 py-2 ${fixed?"fixed top-0 bg-dark":"relative  bg-transparent"} transition-colors duration-300 ease-linear w-full `}>
-    <nav className="grid grid-cols-[200px_auto_200px] items-center gap-4">
-      <section className="h-12">
+    <header className={`z-10 py-2 pr-16 ${fixed?"fixed top-0 bg-dark":"relative  bg-transparent"} transition-colors duration-300 ease-linear w-full `}>
+    <nav className="grid grid-cols-[200px_auto_auto] items-center gap-4">
+      <section className="h-14">
         <Link to="/browse">
           <img
             className="h-full w-full object-contain"
@@ -33,7 +36,7 @@ export default function Header() {
           />
         </Link>
       </section>
-      <section className="text-sm font-normal text-gray-300">
+      <section className="text-base font-normal text-gray-300">
         <ul className="flex gap-8">
           <li>
             <NavLink className={isActiveLink} to="/browse">
@@ -57,7 +60,12 @@ export default function Header() {
           </li>
         </ul>
       </section>
-      <section>Search Icon userInfo</section>
+      <section className=" flex items-center gap-4 justify-self-end ">
+        <SearchBar></SearchBar>
+        <Notification className="h-8 w-8"></Notification>
+        <ProfileMenu></ProfileMenu>
+        
+      </section>
     </nav>
     </header >
   );
