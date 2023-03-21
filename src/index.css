@@ -12,3 +12,23 @@ body{
 .row-container:hover .opacity-0{
     opacity: theme("opacity.100");
 }
+
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: RGB(229, 9, 20)
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: red
+  }
