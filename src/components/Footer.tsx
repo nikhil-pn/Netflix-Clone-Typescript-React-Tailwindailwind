@@ -51,7 +51,7 @@ function Footer({}: Props) {
           </li>
           <li className="my-1 md:mr-4 hover:underline cursor-pointer text-xs font-medium">
             {" "}
-            <a href="https://www.linkedin.com/in/naveen-polasa/">
+            <a href="https://www.linkedin.com/in/nikhilpn/" target={"_blank"}>
               Contact Us
             </a>{" "}
           </li>
@@ -71,12 +71,17 @@ function Footer({}: Props) {
         </button>
         <p className="my-4 text-xs font-medium">Netflix</p>
         <p className="my-4 text-xs font-medium">
-          sashenjayathilaka95@gmail.com
+          Nikhilpn725@gmail.com
         </p>
       </div>
 
       <div className="h-9 py-1 text-white text-center bg-[#333333]">
-        For Educational Purposes Only
+        <section>
+        For Educational  Purposes Only | GitHub Link :   
+        <span className="text-green-500">
+           <a href="https://github.com/nikhil-pn/E-Commerce-Firebase-Redux-DN" className=" "> Source Code</a>
+          </span>
+        </section>
       </div>
     </div>
   );

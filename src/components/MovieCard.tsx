@@ -128,17 +128,24 @@ export default function MovieCard({ poster_path, id, title }: MovieCardProp) {
 
 
           <YouTube 
-           className={`w-full ${!hidePoster? "invisible h-0": "visible h-full"}`} opts={{
+           className={`w-full ${!hidePoster? "invisible h-0": "visible h-full"}`}  opts={{
             width: "400",
             height: "400",
+            showinfo: 0,
+            showTitle: false,
+         
             playerVars: {
               autoplay: 1,
               playsinline: 1,
               controls: 0,
-              loop: 1,
+              loop: 1
+             
+              
 
             },
-          }} videoId={videoInfo?.key}></YouTube>
+          }} videoId={videoInfo?.key} ></YouTube>
+
+          
           <section className='flex items-center justify-between p-6 '>
             <ul className='flex items-center justify-evenly gap-4'>
               <li className='h-12 w-12 ' >

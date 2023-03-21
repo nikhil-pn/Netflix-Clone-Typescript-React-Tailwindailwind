@@ -1,9 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 
 type Props = {};
 
 function SigninBanner({ }: Props) {
+  const navigate = useNavigate()
+  function handleClick() {
+    console.log("here");
+
+    navigate("/browse")
+  }
   return (
     <div className="h-[65vh] sm:h-[100vh] xl:h-[100vh] bg-cover bg-no-repeat bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/84526d58-475e-4e6f-9c81-d2d78ddce803/e3b08071-f218-4dab-99a2-80315f0922cd/LK-en-20221228-popsignuptwoweeks-perspective_alpha_website_small.jpg')]  ">
       <div className="bg-black bg-opacity-70 h-[100vh]">
@@ -27,11 +34,11 @@ function SigninBanner({ }: Props) {
                 alt="drop-down"
               />
             </button>
-            <button
+            <button onClick={handleClick}
               className="h-8 px-1 sm:px-4 m-2 text-white bg-[#e50914] rounded hover:bg-[#e50914]"
 
             >
-              Sign in
+              Sign in as Test User
             </button>
           </div>
         </div>

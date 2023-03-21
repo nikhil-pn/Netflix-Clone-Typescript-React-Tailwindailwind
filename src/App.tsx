@@ -9,6 +9,7 @@ import {
 import Layout from "./components/Layout";
 import SigninBanner from "./components/SigninBanner";
 import Browse from "./pages/Browse";
+import Login from "./components/Login";
 
 function AppRouter() {
   const router = createBrowserRouter(
@@ -25,7 +26,7 @@ function AppRouter() {
           }
         ></Route>
 
-        <Route path="/login" element={<h1>Login Page</h1>}></Route>
+        <Route path="/login" element={<Login></Login>}></Route>
 
         <Route path="/browse" element={<Layout></Layout>}>
           <Route index element={<Browse />}></Route>

@@ -4,6 +4,7 @@ import { ENDPOINT } from '../common/endpoints'
 import { createImageUrlBanner } from '../common/utilis'
 import { MovieVideoInfo } from './MovieCard'
 import YouTube, { YouTubeEvent, YouTubeProps } from 'react-youtube'
+import VideoPlayer from "./VideoPlayer"
 
 export default function Banner() {
     const [randomMovie, setRandomMovie] = useState<MovieResult>()
@@ -14,12 +15,15 @@ export default function Banner() {
     const [hidePoster, sethidePoster] = useState(false)
     const options: YouTubeProps["opts"] = {
         width: document.body.clientWidth,
-        height: "800",
+        height: "1200",
         playerVars: {
             autoplay: 1,
             playsinline: 1,
             controls: 0,
-            loop: 1
+            loop: 1,
+            showinfo: 0,
+
+          
         }
     }
 
@@ -60,10 +64,14 @@ export default function Banner() {
         }
     }
     return (
-        <section className=' relative aspect-video h-[800px] w-full'>
+        <section className=' relative aspect-video h-[800px] w-full -z-10'>
             <img className={hidePoster ? `h-0 invisible` : `h-full  visible `} src={createImageUrlBanner(randomMovie?.backdrop_path ?? "", 0, "original")}></img>
 
-            {videoInfo ? <YouTube videoId={videoInfo?.key} id="banner-video" opts={options} className={`${hidePoster ? `visible h-full w-full` : `invisible h-0`} absolute -mt-14`} onStateChange={onStateChange}></YouTube> : null}
+            {videoInfo ? <YouTube videoId={videoInfo?.key} id="banner-video"    opts={options} className={`${hidePoster ? `visible h-full w-full` : `invisible h-0`} absolute -mt-48`} onStateChange={onStateChange}></YouTube> : null}
+
+
+
+             {/* <VideoPlayer videoId={videoInfo?.key} ></VideoPlayer> */}
 
             {/* {backdrop?<section className='absolute top-0 left-0 z-[1] h-full w-full bg-dark/60'></section> : null } */}
 
