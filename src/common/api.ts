@@ -2,11 +2,11 @@
 import { ENDPOINT } from "./endpoints";
 import { MovieVideoResult, MovieVideoInfo } from "components/MovieCard";
 
-export type MovieResult = {
+export interface MovieResult {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
-  id: number | string;
+  id: number ;
   original_language: string;
   original_title: string;
   overview: string;
@@ -20,7 +20,7 @@ export type MovieResult = {
   [k: string]: unknown;
 }[];
 
-export type MovieResponse<T> = {
+export interface MovieResponse<T>{
   page: number;
   results: T;
   total_pages: number;

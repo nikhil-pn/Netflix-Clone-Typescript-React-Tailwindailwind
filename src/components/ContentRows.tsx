@@ -8,6 +8,12 @@ import PageIndicator from "./PageIndicator";
 import Modal from "./Modal";
 import MovieCard from "./MovieCard";
 
+type MoviePropId = {
+  id : string
+  title : string
+  poster_path :string
+}
+
 type RowProp = {
   endpoint: string;
   title: string;

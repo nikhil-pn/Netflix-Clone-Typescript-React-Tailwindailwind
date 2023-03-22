@@ -1,6 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import netflix from "../assets/Netflix_Logo_PMS.png"
+import globe from "../assets/globe (1).png"
+import traingaleDropdown from "../assets/down-filled-triangular-arrow.png"
+import rightArrow from "../assets/right-arrow-angle.png"
 
 type Props = {};
 
@@ -17,20 +20,20 @@ function SigninBanner({ }: Props) {
         <div className="flex items-center justify-between ">
           <img
             className="w-28 sm:w-36 lg:w-52 ml-4 sm:ml-8 pt-4"
-            src="/src/assets/logo.png"
+            src={netflix}
             alt="logo_red"
           />
           <div className="flex mr-4 sm:mr-10">
             <button className="flex justify-center items-center text-white h-8 sm:rounded-none m-2 mr-6 border rounded">
               <img
                 className="w-4 mx-1  "
-                src="/src/assets/globe (1).png"
+                src={globe}
                 alt="globe"
               />
               English
               <img
                 className="w-3 mx-1 pt-1"
-                src="/src/assets/down-filled-triangular-arrow.png"
+                src={traingaleDropdown}
                 alt="drop-down"
               />
             </button>
@@ -64,7 +67,7 @@ function SigninBanner({ }: Props) {
               Get Started
               <img
                 className="w-4 md:w-7 pt-1 text-white"
-                src="/src/assets/right-arrow-angle.png"
+                src={rightArrow}
                 alt="right-angle"
               />
             </button>

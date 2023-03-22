@@ -64,7 +64,7 @@ export default function Header() {
         </ul>
       </section>
       <section className=" flex items-center gap-4 justify-self-end ">
-        <SearchBar></SearchBar>
+        <SearchBar setSearchTerm={""} searchThrem={""}></SearchBar>
         <Notification className="h-8 w-8 hidden sm:block"></Notification>
         <ProfileMenu></ProfileMenu>
         

@@ -4,7 +4,7 @@ import { ENDPOINT } from '../common/endpoints'
 import { createImageUrlBanner } from '../common/utilis'
 import { MovieVideoInfo } from './MovieCard'
 import YouTube, { YouTubeEvent, YouTubeProps } from 'react-youtube'
-import VideoPlayer from "./VideoPlayer"
+
 
 export default function Banner() {
     const [randomMovie, setRandomMovie] = useState<MovieResult>()
