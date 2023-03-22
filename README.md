@@ -1,5 +1,5 @@
 # Netflix-Clone-Typescript-React-Tailwindailwind
-## Video Demo of Netflix
+## Video Demo of Netflix🚀  | ingore the song from bg was playing spotify at just time 😅
 
 
 https://user-images.githubusercontent.com/110462696/227018875-94a1a74a-e15c-44fb-b192-dba35821b33f.mp4
