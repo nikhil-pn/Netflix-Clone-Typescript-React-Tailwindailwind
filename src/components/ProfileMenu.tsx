@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function ProfileMenu() {
     return (
-        <div>Nikhil Pn</div>
+        <div className='sm:block hidden lg:block visible' >Nikhil Pn</div>
     )
 }

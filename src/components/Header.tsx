@@ -24,19 +24,22 @@ export default function Header() {
     () => window.removeEventListener("scroll", onWindowScroll)
   }, [])
 
+  // grid z-10 py-2 sm:pr-16 sm:${fixed?"sm:fixed top-0 bg-dark":" sm:relative  bg-transparent"} transition-colors duration-300 ease-linear sm:w-full
+
+  // z-10 py-2 pr-16 ${fixed?"fixed top-0 bg-dark":"relative  bg-transparent"} transition-colors duration-300 ease-linear w-full 
   return (
-    <header className={`z-10 py-2 pr-16 ${fixed?"fixed top-0 bg-dark":"relative  bg-transparent"} transition-colors duration-300 ease-linear w-full `}>
-    <nav className="grid grid-cols-[200px_auto_auto] items-center gap-4">
-      <section className="h-14">
+    <header className={`grid fixed w-full sm:fixed z-10 py-2 sm:pr-16 sm:${fixed?"sm:fixed top-0 bg-dark":" sm:relative  bg-transparent"} transition-colors duration-300 ease-linear sm:w-full  `}>
+    <nav className="grid sm:grid-cols-[200px_auto_auto] items-center sm:gap-4">
+      <section className="h-14 w-full ">
         <Link to="/">
           <img
-            className="h-full w-full object-contain"
+            className="h-full w-full object-contain   "
             src={netflix}
             alt="netflix logo"
           />
         </Link>
       </section>
-      <section className="text-base font-normal text-gray-300">
+      <section className="text-base font-normal text-gray-300 hidden sm:block">
         <ul className="flex gap-8">
           <li>
             <NavLink className={isActiveLink} to="/browse">
@@ -62,7 +65,7 @@ export default function Header() {
       </section>
       <section className=" flex items-center gap-4 justify-self-end ">
         <SearchBar></SearchBar>
-        <Notification className="h-8 w-8"></Notification>
+        <Notification className="h-8 w-8 hidden sm:block"></Notification>
         <ProfileMenu></ProfileMenu>
         
       </section>

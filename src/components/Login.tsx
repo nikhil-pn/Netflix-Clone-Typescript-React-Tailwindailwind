@@ -5,8 +5,13 @@ import SigninBanner from './SigninBanner'
 export default function Login() {
   return (
     <>
-    <SigninBanner></SigninBanner>
-    <Footer></Footer>
+      <section className='grid h-screen'>
+        <h2 className='grid justify-center  items-center '>
+          hello
+        </h2>
+      </section>
+      {/* <SigninBanner></SigninBanner>
+    <Footer></Footer> */}
     </>
   )
 }
