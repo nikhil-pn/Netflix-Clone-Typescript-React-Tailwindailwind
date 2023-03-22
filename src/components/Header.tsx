@@ -28,7 +28,7 @@ export default function Header() {
 
   // z-10 py-2 pr-16 ${fixed?"fixed top-0 bg-dark":"relative  bg-transparent"} transition-colors duration-300 ease-linear w-full 
   return (
-    <header className={`grid fixed w-full sm:fixed z-10 py-2 sm:pr-16 sm:${fixed?"sm:fixed top-0 bg-dark":" sm:relative  bg-transparent"} transition-colors duration-300 ease-linear sm:w-full  `}>
+    <header className={`grid fixed w-full sm:fixed z-10 py-2 sm:pr-16 sm:${fixed?"sm:fixed top-0 bg-dark":" relative  bg-transparent"} transition-colors duration-300 ease-linear sm:w-full  `}>
     <nav className="grid sm:grid-cols-[200px_auto_auto] items-center sm:gap-4">
       <section className="h-14 w-full ">
         <Link to="/">
